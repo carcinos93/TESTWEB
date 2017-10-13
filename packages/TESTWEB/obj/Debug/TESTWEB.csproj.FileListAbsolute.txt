@@ -1,0 +1,11 @@
+c:\users\nrodas\documents\visual studio 2013\Projects\TESTWEB\TESTWEB\bin\TESTWEB.dll.config
+c:\users\nrodas\documents\visual studio 2013\Projects\TESTWEB\TESTWEB\bin\TESTWEB.dll
+c:\users\nrodas\documents\visual studio 2013\Projects\TESTWEB\TESTWEB\bin\TESTWEB.pdb
+c:\users\nrodas\documents\visual studio 2013\Projects\TESTWEB\TESTWEB\bin\Json.NET.Web.dll
+c:\users\nrodas\documents\visual studio 2013\Projects\TESTWEB\TESTWEB\bin\log4net.dll
+c:\users\nrodas\documents\visual studio 2013\Projects\TESTWEB\TESTWEB\bin\Newtonsoft.Json.dll
+c:\users\nrodas\documents\visual studio 2013\Projects\TESTWEB\TESTWEB\bin\log4net.xml
+c:\users\nrodas\documents\visual studio 2013\Projects\TESTWEB\TESTWEB\bin\Newtonsoft.Json.xml
+c:\users\nrodas\documents\visual studio 2013\Projects\TESTWEB\TESTWEB\obj\Debug\TESTWEB.csprojResolveAssemblyReference.cache
+c:\users\nrodas\documents\visual studio 2013\Projects\TESTWEB\TESTWEB\obj\Debug\TESTWEB.dll
+c:\users\nrodas\documents\visual studio 2013\Projects\TESTWEB\TESTWEB\obj\Debug\TESTWEB.pdb
