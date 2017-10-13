@@ -48,7 +48,8 @@ namespace TESTWEB.Servicios
                 Name = "AdoAppender",
                 //ConnectionString = "server=localhost;database=log; user=nelson;password=nightmare;port=3306",
                 ConnectionString = @"Data Source=CLINSVNB03\SQLEXPRESS2012;Initial Catalog=CLINERP;User ID=sa;Password=P@ssw0rd;",
-                CommandText = "INSERT INTO auditoria_ws (MENSAJE,URL,IP,PARAMETROS, PARAMETROS_GET, CLIENTE) VALUES (@message, @url, @ip, @params, @query, @cliente)",
+                CommandText = "INSERT INTO auditoria_ws (MENSAJE,URL,IP,PARAMETROS, PARAMETROS_GET, CLIENTE, METODO , FECHA, EXCEPCION) " +
+                "VALUES (@message, @url, @ip, @params, @query, @cliente,@metodo, GETDATE(), @exception)",
                 CommandType = System.Data.CommandType.Text,
                 ConnectionType = "System.Data.SqlClient.SqlConnection, System.Data, Version=1.0.3300.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 //ConnectionType = "MySql.Data.MySqlClient.MySqlConnection, MySql.Data"
@@ -129,8 +130,14 @@ namespace TESTWEB.Servicios
                 Size = 255,
                 Layout = (IRawLayout)layoutConverter.ConvertFrom(new UrlPatternLayout("%cli%"))
             });
-            databaseAppender.ActivateOptions();
-
+            //metodo
+            databaseAppender.AddParameter(new AdoNetAppenderParameter
+            {
+                ParameterName = "@metodo",
+                DbType = System.Data.DbType.String,
+                Size = 50,
+                Layout = (IRawLayout)layoutConverter.ConvertFrom(new UrlPatternLayout("%method%"))
+            });
             databaseAppender.AddParameter(new AdoNetAppenderParameter
             {
                 ParameterName = "@params",
@@ -206,11 +213,7 @@ namespace TESTWEB.Servicios
                            parametros.Add(i, context.Request.QueryString.Get(i));
                        }
                    }
-                   output = Regex.Replace(output, "%params%", (
-                   
-                       JsonConvert.SerializeObject(parametros) 
-                    
-                       ));
+                   output = Regex.Replace(output, "%params%", (JsonConvert.SerializeObject(parametros)));
                }
                if (new Regex("%query%").IsMatch(_format))
                {
@@ -219,6 +222,11 @@ namespace TESTWEB.Servicios
                if (new Regex("%cli%").IsMatch(_format))
                {
                    output = Regex.Replace(output, "%cli%", context.Request.UserAgent);
+               }
+
+               if (new Regex("%method%").IsMatch(_format))
+               {
+                   output = Regex.Replace(output, "%method%", context.Request.HttpMethod);
                }
            }
            writer.Write(output);

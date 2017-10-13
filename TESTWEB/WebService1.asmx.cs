@@ -22,8 +22,19 @@ namespace TESTWEB
         [WebMethod]
         public string HelloWorld(string mensaje, string usuario, string monto)
         {
-          
-            log.Info(mensaje);
+
+            try
+            {
+                var i = 0;
+                var j = 1;
+                var k = j / i;
+            }
+            catch (Exception ex)
+            {
+
+                log.Info("Error provocado",ex);
+            }
+           
             return usuario + " tiene " + monto;
             
         }
